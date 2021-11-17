@@ -26,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: () {
         setState(() {
           _selectedIndex = index;
-          print(_selectedIndex);
+          // print(_selectedIndex);
         });
       },
       child: Container(
@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Text(
               "What would you like to find?",
               style: TextStyle(
-                fontSize: 30.0,
+                fontSize: 28.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -74,6 +74,39 @@ class _HomeScreenState extends State<HomeScreen> {
                 .entries
                 .map((MapEntry map) => buildIcon(map.key))
                 .toList(),
+          ),
+          const SizedBox(height: 20.0),
+          Column(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Top Destinations",
+                      style: TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 1.1,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "See All",
+                        style: TextStyle(
+                          color: Theme.of(context).primaryColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.95,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       )),
