@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   // Index of icons
   int _selectedIndex = 0;
+  int _currentTab = 0;
 
   // List of icons
   final List<IconData> _icons = [
@@ -57,34 +58,68 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 30.0),
-        children: <Widget>[
-          const Padding(
-            padding: EdgeInsets.only(left: 20.0, right: 120.0),
-            child: Text(
-              "What would you like to find?",
-              style: TextStyle(
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
+        child: ListView(
+          padding: const EdgeInsets.symmetric(vertical: 30.0),
+          children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.only(left: 20.0, right: 120.0),
+              child: Text(
+                "What would you like to find?",
+                style: TextStyle(
+                  fontSize: 28.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
+            const SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: _icons
+                  .asMap()
+                  .entries
+                  .map((MapEntry map) => buildIcon(map.key))
+                  .toList(),
+            ),
+            const SizedBox(height: 20.0),
+            const DestinationCarousel(),
+            const SizedBox(height: 20.0),
+            const HotelCarousel(),
+          ],
+        ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        currentIndex: _currentTab,
+        onTap: (int value) {
+          setState(() {
+            _currentTab = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+              size: 30.0,
+            ),
+            label: "",
           ),
-          const SizedBox(height: 20.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: _icons
-                .asMap()
-                .entries
-                .map((MapEntry map) => buildIcon(map.key))
-                .toList(),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.local_pizza,
+              size: 30.0,
+            ),
+            label: "",
           ),
-          const SizedBox(height: 20.0),
-          const DestinationCarousel(),
-          const SizedBox(height: 20.0),
-          const HotelCarousel(),
+          BottomNavigationBarItem(
+            icon: CircleAvatar(
+              radius: 15.0,
+              backgroundImage: NetworkImage("http://i.imgur.com/zL4Krbz.jpg"),
+            ),
+            label: "",
+          ),
         ],
-      )),
+      ),
     );
   }
 }
