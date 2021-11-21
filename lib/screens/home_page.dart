@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_travel_app/widgets/hotel_carousel.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+// Internal Imports
+import 'package:flutter_travel_app/widgets/destination_carousel.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -76,38 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 .toList(),
           ),
           const SizedBox(height: 20.0),
-          Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      "Top Destinations",
-                      style: TextStyle(
-                        fontSize: 22.0,
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.1,
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "See All",
-                        style: TextStyle(
-                          color: Theme.of(context).primaryColor,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.95,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
+          const DestinationCarousel(),
+          const SizedBox(height: 20.0),
+          const HotelCarousel(),
         ],
       )),
     );
